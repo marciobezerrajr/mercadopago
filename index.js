@@ -3,7 +3,7 @@ const MercadoPago = require('mercadopago')
 const app = express()
 
 MercadoPago.configure({
-    sandbox: true, //
+    sandbox: true, 
     access_token: 'TEST-88230570437118-110101-963b3c1076ba216cfec31f44cbef00d3-152688826'
 })
 
@@ -35,7 +35,7 @@ app.get('/payment', async (req, res) => {
     try {
         var pagto = await MercadoPago.preferences.create(data)
         console.log(pagto)
-        //banco.salvarPagemento({id: id, pagador: emailpagador})
+        
         return res.redirect(pagto.body.init_point)
     } catch (err) {
         res.send(err.message)
