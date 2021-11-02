@@ -7,11 +7,11 @@ MercadoPago.configure({
     access_token: 'TEST-88230570437118-110101-963b3c1076ba216cfec31f44cbef00d3-152688826'
 })
 
-app.get('/.netlify/', (req, res) => {
+app.get('/', (req, res) => {
     res.send("Olá mundo")
 })
 
-app.get('/.netlify//payment', async (req, res) => {
+app.get('/payment', async (req, res) => {
 
     var id = "" + Date.now()
     var payerMail = 'marcio@email.com'
@@ -42,7 +42,7 @@ app.get('/.netlify//payment', async (req, res) => {
     }
 })
 
-app.post('/.netlify/notification', (req, res) => {
+app.post('/notification', (req, res) => {
     console.log(req.query)
     res.send('ok')
 })
