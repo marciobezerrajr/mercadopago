@@ -53,7 +53,15 @@ app.post('/notification', (req, res) => {
         MercadoPago.payment.search({
             qs: filter
         }).then((data) => {
-            console.log(data)
+
+            const payment = data.body.results[0]
+
+            if (payment != undefined) {
+                console.log(payment)
+            } else {
+                console.log('Pagamento não encontrado')
+            }
+            
         }).catch((err) => {
             console.log(err)
         })
