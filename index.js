@@ -58,10 +58,16 @@ app.post('/notification', (req, res) => {
 
             if (payment != undefined) {
                 console.log(payment)
+                console.log(payment.external_reference)
+                console.log(payment.status)
+
+                // if(payment.status === "approved"){
+                //     //banco.pagamentos.salvo(payment.externnal_refence)
+                // }
             } else {
                 console.log('Pagamento não encontrado')
             }
-            
+
         }).catch((err) => {
             console.log(err)
         })
