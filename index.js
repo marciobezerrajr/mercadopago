@@ -3,7 +3,7 @@ const MercadoPago = require('mercadopago')
 const app = express()
 
 MercadoPago.configure({
-    sandbox: true, 
+    sandbox: true,
     access_token: 'TEST-88230570437118-110101-963b3c1076ba216cfec31f44cbef00d3-152688826'
 })
 
@@ -35,7 +35,7 @@ app.get('/payment', async (req, res) => {
     try {
         var pagto = await MercadoPago.preferences.create(data)
         console.log(pagto)
-        
+
         return res.redirect(pagto.body.init_point)
     } catch (err) {
         res.send(err.message)
@@ -43,7 +43,23 @@ app.get('/payment', async (req, res) => {
 })
 
 app.post('/notification', (req, res) => {
-    console.log(req.query)
+    var id = req.query.id
+    // console.log(req.query)
+    setTimeout(() => {
+        const filter = {
+            "order.id": id
+        }
+
+        MercadoPago.payment.search({
+            qs: filter
+        }).then((data) => {
+            console.log(data)
+        }).catch((err) => {
+            console.log(err)
+        })
+
+    }, 2000)
+
     res.send('ok')
 })
 
